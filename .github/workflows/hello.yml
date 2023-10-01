@@ -1,23 +1,32 @@
-name: My very first workflow
+name: Challenge workflow
 
 on: push
 
-jobs:
-    job1:
-        name: First job
-        runs-on: ubuntu-latest
-        steps:
-            - name: Step one
-              uses: actions/checkout@v3
-            - name: Step two
-              run: env | sort
-    
-    job2:
-        name: Second job
-        runs-on: windows-latest
-        steps:
-            - name: Step one
-              uses: actions/checkout@v3
-            - name: Step two
-              run: "Get-ChildItem ENV: | Sort-Object Name"
-
+jobs: 
+  job1:
+    name: First Job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Step one
+        uses: actions/checkout@v3
+      - name: Step two
+        run: echo hello
+  
+  job2:
+    name: Second job
+    runs-on: windows-latest
+    steps:
+      - name: Step one
+        uses: actions/checkout@v3
+      - name: Step two
+        run: Write-Host "Hello World"
+  
+  job3:
+    name: Third job
+    runs-on: macos-latest
+    needs: [job1, job2]
+    steps:
+      - name: First step
+        uses: actions/checkout@v3
+      - name: Second step
+        run: echo Hello world
